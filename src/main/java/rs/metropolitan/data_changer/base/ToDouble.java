@@ -33,7 +33,7 @@ public class ToDouble extends AbstactDataSeperator {
 
     @Override
     public Object changeString(String data) {
-        if (NumberUtils.isParsable(data)) {
+        if (NumberUtils.isNumber(data)) {
             return Double.parseDouble(data);
         }
         return null;

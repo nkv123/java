@@ -8,7 +8,11 @@ package rs.metropolitan.data_changer.lists;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
+import javax.print.DocFlavor;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.StrSubstitutor;
+import org.apache.commons.lang3.text.StrTokenizer;
 import rs.metropolitan.data_changer.AbstactDataSeperator;
 
 /**
@@ -49,14 +53,23 @@ public class ToList extends AbstactDataSeperator {
 
     @Override
     public Object changeString(String data) {
-
-        String seps = "{},";
-        if (StringUtils.contains(data, seps)) {
-            String[] split = StringUtils.split(data, seps);
-            System.out.println("rs.metropolitan.data_changer.lists.ToList.changeString()"+split);
-            ArraylistString.addAll(Arrays.asList(split));
+        String chars = ",{}";
+        String seps = ",";
+        if (StringUtils.contains(data, chars)) {
+            String removeBrackheads = removeBrackheads(data);
+            StringTokenizer st = new StringTokenizer(removeBrackheads, seps);
+            while (st.hasMoreTokens()) {
+                ArraylistString.add(st.nextToken());
+            }
         }
         return ArraylistString;
+    }
+
+    public String removeBrackheads(String data) {
+        String rems = "{";
+        String str = StringUtils.remove(data, rems);
+        rems = "}";
+        return StringUtils.remove(str, rems);
     }
 
     @Override

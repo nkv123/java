@@ -48,8 +48,6 @@ public class ToIntegerIT {
         Object expResult = new Integer("");
         Object result = instance.changeString(data);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-
     }
 
     @Test
@@ -57,11 +55,9 @@ public class ToIntegerIT {
         System.out.println("changeString1");
         String data = "1";
         ToInteger instance = new ToInteger();
-        Object expResult = new Integer(1);
+        Object expResult = new Integer("1");
         Object result = instance.changeString(data);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-
     }
 
     @Test
@@ -69,11 +65,9 @@ public class ToIntegerIT {
         System.out.println("changeString2");
         String data = "1.23";
         ToInteger instance = new ToInteger();
-        Object expResult = new Integer(1);
+        Object expResult = new Integer("1");
         Object result = instance.changeString(data);
         assertNotEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package rs.metropolitan.data_changer.base;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import rs.metropolitan.data_changer.AbstactDataSeperator;
 
@@ -21,9 +22,6 @@ public class ToInteger extends AbstactDataSeperator {
         super(input);
     }
 
-    
-
-
     @Override
     public String getInput() {
         return super.getInput(); //To change body of generated methods, choose Tools | Templates.
@@ -36,24 +34,16 @@ public class ToInteger extends AbstactDataSeperator {
 
     @Override
     public Object changeString(String data) {
-        try {
-            if (NumberUtils.isParsable(data)) {
-                return Integer.parseInt(data);
-            }
-            return null;
-        } catch (NumberFormatException ex) {
-            System.err.println("bad string format");
-            return ex.getMessage();
-        } catch (Exception ex) {
-            System.err.println(ex);
-            return ex.toString();
-        }
 
+        if (NumberUtils.isNumber(data)) {
+            return Integer.parseInt(data);
+        }
+        return null;
     }
 
     @Override
     public Object changeString() {
-       return changeString(super.getInput());
+        return changeString(super.getInput());
     }
 
 }
