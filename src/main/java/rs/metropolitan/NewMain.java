@@ -5,8 +5,10 @@
  */
 package rs.metropolitan;
 
-import rs.metropolitan.data_changer.AbstactDataSeperator;
+import java.util.ArrayList;
+import java.util.List;
 import rs.metropolitan.data_changer.DataFactory;
+import rs.metropolitan.data_changer.lists.ToList;
 
 /**
  *
@@ -17,13 +19,25 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         // TODO code application logic here
-        DataFactory df = new DataFactory();
-        Object work = df.work("{a,b,c}");
-        System.out.println(work);
+        NewMain newM = new NewMain();
     }
 
-   
-    
+    public NewMain() {
+        DataFactory df = new DataFactory();
+        String data0 = new String("{\"a\",\"b\",\"c\"}");
+        String data1 = new String("{1,2,3,4,5}");
+        String data2 = new String("1");
+        String data3 = new String("1.25");
+        //ToList change = new ToList();
+        List<String> list = (ArrayList<String>) df.change(data0);
+        //work.changeString(data);
+        System.out.println(list);
+        Integer val0 = (Integer) df.change(data2);
+        System.out.println(val0);
+        Double val1 = (Double) df.change(data3);
+        System.out.println(val1);
+    }
+
 }

@@ -12,37 +12,45 @@ import java.util.Objects;
  * @author ladmin
  */
 public abstract class AbstactDataSeperator {
+
     /**
      * read string
      */
-private String input;
-/**
- * empty constructor
- */
+    private String input;
+
+    /**
+     * empty constructor
+     */
     public AbstactDataSeperator() {
     }
-/**
- * constructor with parameters
- * @param input 
- */
+
+    /**
+     * constructor with parameters
+     *
+     * @param input
+     */
     public AbstactDataSeperator(String input) {
         this.input = input;
     }
-/**
- * hash code
- * @return 
- */
+
+    /**
+     * hash code
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 19 * hash + Objects.hashCode(this.input);
         return hash;
     }
-/**
- * equals
- * @param obj
- * @return 
- */
+
+    /**
+     * equals
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -63,12 +71,15 @@ private String input;
 
     /**
      * changes string to a object
+     *
      * @param data
      * @return
      */
-    public abstract Object changeString(String data); 
+    public abstract Object changeString(String data);
+
     /**
      * changes string to a object
+     *
      * @param data
      * @return
      */
@@ -87,6 +98,5 @@ private String input;
     public void setInput(String input) {
         this.input = input;
     }
-    
-    
+
 }

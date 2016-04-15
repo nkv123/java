@@ -33,16 +33,24 @@ public class ToInteger extends AbstactDataSeperator {
     }
 
     @Override
-    public Object changeString(String data) {
-
-        if (NumberUtils.isNumber(data)) {
-            return Integer.parseInt(data);
+    public Integer changeString(String data) {
+        try {
+            String dot = ".";
+            if (StringUtils.isNumeric(data) && StringUtils.countMatches(data, dot) == 0) {
+                return new Integer(data);
+            }
+            return null;
+        } catch (NumberFormatException ex) {
+            System.err.print(ex.getLocalizedMessage());
+            return null;
+        } catch (Exception ex) {
+            System.err.print(ex.getLocalizedMessage());
+            return null;
         }
-        return null;
     }
 
     @Override
-    public Object changeString() {
+    public Integer changeString() {
         return changeString(super.getInput());
     }
 

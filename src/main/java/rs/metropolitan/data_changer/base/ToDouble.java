@@ -5,6 +5,7 @@
  */
 package rs.metropolitan.data_changer.base;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import rs.metropolitan.data_changer.AbstactDataSeperator;
 
@@ -32,15 +33,27 @@ public class ToDouble extends AbstactDataSeperator {
     }
 
     @Override
-    public Object changeString(String data) {
-        if (NumberUtils.isNumber(data)) {
-            return Double.parseDouble(data);
+    public Double changeString(String data) {
+        try {
+            String dot = ".";
+            String beforeDot = StringUtils.substringBefore(data, dot);
+            String afterDot = StringUtils.substringBefore(data, dot);
+            if (StringUtils.isNumeric(beforeDot) && StringUtils.isNumeric(afterDot)
+                    && StringUtils.countMatches(data, dot) == 1) {
+                return new Double(data);
+            }
+            return null;
+        } catch (NumberFormatException ex) {
+            System.err.print(ex.getLocalizedMessage());
+            return null;
+        } catch (Exception ex) {
+            System.err.print(ex.getLocalizedMessage());
+            return null;
         }
-        return null;
     }
 
     @Override
-    public Object changeString() {
+    public Double changeString() {
         return changeString(super.getInput());
     }
 

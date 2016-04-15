@@ -38,42 +38,89 @@ public class ToDoubleIT {
     }
 
     /**
-     * Test of changeString method, of class ToDouble.
-     * should not pass, but cases an error
+     * Test of changeString method, of class ToDouble. should pass. return null
+     * if empty string passed
      */
     @Test
     public void testChangeString0() {
         System.out.println("changeString0");
         String data = "";
         ToDouble instance = new ToDouble();
-        Object expResult = new ToDouble();
-        Object result = instance.changeString(data);
+        Double expResult = null;
+        Double result = instance.changeString(data);
         assertEquals(expResult, result);
 
     }/**
- * test should pass
- */
+     * Test of changeString method, of class ToDouble. should pass. return null
+     * if string containing letter is passed
+     */
     @Test
     public void testChangeString1() {
         System.out.println("changeString1");
-        String data = "1.23";
+        String data = "1a2.3";
         ToDouble instance = new ToDouble();
-        Object expResult = new Double("1.23");
-        Object result = instance.changeString(data);
+        Double expResult = null;
+        Double result = instance.changeString(data);
         assertEquals(expResult, result);
 
     }
-/**
- * test should pass
- */
+
+    /**
+     * test should pass
+     *
+     */
     @Test
     public void testChangeString2() {
         System.out.println("changeString2");
+        String data = "1.23";
+        ToDouble instance = new ToDouble();
+        Double expResult = new Double("1.23");
+        Double result = instance.changeString(data);
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * test should pass does not work with string array as parameter
+     */
+    @Test
+    public void testChangeString3() {
+        System.out.println("changeString3");
         String data = "{1.24,1.23,1558.4}";
         ToDouble instance = new ToDouble();
-        Object expResult = new Double("1.23");
-        Object result = instance.changeString(data);
+        Double expResult = new Double("1.24");
+        Double result = instance.changeString(data);
         assertNotEquals(expResult, result);
+    }
+
+    /**
+     * test should pass does not work if there sting has dot following to
+     * interpreted double
+     */
+    @Test
+    public void testChangeString4() {
+        System.out.println("changeString4");
+        String data = "1.23.";
+        ToDouble instance = new ToDouble();
+        Double expResult = new Double("1.23");
+        Double result = instance.changeString(data);
+        assertNotEquals(expResult, result);
+
+    }
+
+    /**
+     * test should pass does not work if there sting has dot leading to
+     * interpreted double
+     */
+    @Test
+    public void testChangeString5() {
+        System.out.println("changeString5");
+        String data = ".1.23";
+        ToDouble instance = new ToDouble();
+        Double expResult = new Double("1.23");
+        Double result = instance.changeString(data);
+        assertNotEquals(expResult, result);
+
     }
 
 }

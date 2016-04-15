@@ -57,8 +57,8 @@ public class ToListIT {
     public void testChangeString0() {
         System.out.println("changeString0");
         ToList instance = new ToList();
-        Object result = instance.changeString("{abc,efg}");
-        assertEquals(expResultList0, result);
+        List<String> result = instance.changeString("");
+        assertEquals(new ArrayList<String>(), result);
     }
 
     /**
@@ -68,45 +68,19 @@ public class ToListIT {
     public void testChangeString1() {
         System.out.println("changeString1");
         ToList instance = new ToList();
-        Object result = instance.changeString("{1,2,3}");
+        List<String> result = instance.changeString("{abc,efg}");
+        assertEquals(expResultList0, result);
+    }
+
+    /**
+     * Test of changeString method, of class ToList.
+     */
+    @Test
+    public void testChangeString2() {
+        System.out.println("changeString0");
+        ToList instance = new ToList();
+        List<String> result = instance.changeString("{1,2,3}");
         assertEquals(expResultList1, result);
-    }
-
-   
-    /**
-     * Test of removeBrackheads method, of class ToList.
-     */
-    @Test
-    public void testRemoveBrackheads0() {
-        System.out.println("removeBrackheads0");
-        ToList instance = new ToList();
-        Object result = instance.removeBrackheads("{abc,efg}");
-        Object expResult = new String("abc,efg");
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of removeBrackheads method, of class ToList.
-     */
-    @Test
-    public void testRemoveBrackheads1() {
-        System.out.println("removeBrackheads1");
-        ToList instance = new ToList();
-        Object result = instance.removeBrackheads("{1.2,3,4}");
-        Object expResult = new String("1.2,3,4");
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of removeBrackheads method, of class ToList.
-     */
-    @Test
-    public void testRemoveBrackheads2() {
-        System.out.println("removeBrackheads2");
-        ToList instance = new ToList();
-        Object result = instance.removeBrackheads("{12,3,4}");
-        Object expResult = new String("12,3,4");
-        assertEquals(expResult, result);
     }
 
 }

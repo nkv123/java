@@ -52,12 +52,17 @@ public class ToList extends AbstactDataSeperator {
     }
 
     @Override
-    public Object changeString(String data) {
-        String chars = ",{}";
+    public ArrayList<String> changeString(String data) {
+        String left = "{";
+        String right = "}";
+        String doubleQuote = "\"";
         String seps = ",";
-        if (StringUtils.contains(data, chars)) {
-            String removeBrackheads = removeBrackheads(data);
-            StringTokenizer st = new StringTokenizer(removeBrackheads, seps);
+        if (StringUtils.startsWith(data, left) && StringUtils.endsWith(data, right)) {
+            String cleaned = StringUtils.remove(data, left);
+            cleaned = StringUtils.remove(cleaned, right);
+            cleaned = StringUtils.remove(cleaned, doubleQuote);
+            System.out.println(cleaned);
+            StringTokenizer st = new StringTokenizer(cleaned, seps);
             while (st.hasMoreTokens()) {
                 ArraylistString.add(st.nextToken());
             }
@@ -65,15 +70,8 @@ public class ToList extends AbstactDataSeperator {
         return ArraylistString;
     }
 
-    public String removeBrackheads(String data) {
-        String rems = "{";
-        String str = StringUtils.remove(data, rems);
-        rems = "}";
-        return StringUtils.remove(str, rems);
-    }
-
     @Override
-    public Object changeString() {
+    public ArrayList<String> changeString() {
         return this.changeString(super.getInput());
     }
 

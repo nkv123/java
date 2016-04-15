@@ -38,21 +38,39 @@ public class ToIntegerIT {
     }
 
     /**
-     * Test of changeString method, of class ToInteger.
+     * Test of changeString method, of class ToInteger. test should pass. return
+     * null for empty string
      */
     @Test
     public void testChangeString0() {
         System.out.println("changeString0");
         String data = "";
         ToInteger instance = new ToInteger();
-        Object expResult = new Integer("");
+        Object expResult = null;
         Object result = instance.changeString(data);
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of changeString method, of class ToInteger. test should pass. return
+     * integer for
+     */
     @Test
     public void testChangeString1() {
         System.out.println("changeString1");
+        String data = "a";
+        ToInteger instance = new ToInteger();
+        Object expResult = null;
+        Object result = instance.changeString(data);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of changeString method, of class ToInteger.
+     */
+    @Test
+    public void testChangeString2() {
+        System.out.println("changeString2");
         String data = "1";
         ToInteger instance = new ToInteger();
         Object expResult = new Integer("1");
@@ -61,13 +79,22 @@ public class ToIntegerIT {
     }
 
     @Test
-    public void testChangeString2() {
-        System.out.println("changeString2");
-        String data = "1.23";
+    public void testChangeString3() {
+        System.out.println("changeString3");
+        String data = "1.";
         ToInteger instance = new ToInteger();
-        Object expResult = new Integer("1");
+        Object expResult = null;
         Object result = instance.changeString(data);
-        assertNotEquals(expResult, result);
+        assertEquals(expResult, result);
     }
 
+    @Test
+    public void testChangeString4() {
+        System.out.println("changeString4");
+        String data = ".23";
+        ToInteger instance = new ToInteger();
+        Object expResult = null;
+        Object result = instance.changeString(data);
+        assertEquals(expResult, result);
+    }
 }

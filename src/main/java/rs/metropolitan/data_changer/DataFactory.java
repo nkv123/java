@@ -5,9 +5,9 @@
  */
 package rs.metropolitan.data_changer;
 
+import java.util.ArrayList;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-import rs.metropolitan.data_changer.base.ToDouble;
 import rs.metropolitan.data_changer.base.ToInteger;
 import rs.metropolitan.data_changer.lists.ToList;
 
@@ -17,16 +17,23 @@ import rs.metropolitan.data_changer.lists.ToList;
  */
 public class DataFactory {
 
-    public Object work(String data) {
+    public Object change(String data) {
+
         String trim = data.trim();
-        String seps = ",{}";
-        if (StringUtils.contains(trim, seps)) {
-            ToList lista = new ToList(trim);
-            return lista.changeString();
-        } else if (NumberUtils.isDigits(seps)) {
-            return new ToInteger(trim);
-        } 
-        return data;
+        System.out.println(trim);
+        String[] seps = {",", "{", "}"};
+        if (StringUtils.containsAny(trim, seps)) {
+            ToList lista = new ToList();
+            return lista.changeString(trim);
+        } else if (false) {
+
+        } else if (NumberUtils.isDigits(trim)) {
+            ToInteger toint = new ToInteger();
+            return toint.changeString(trim);
+        } else if (StringUtils.isAlphanumericSpace(trim)) {
+            return data;
+        }
+        return null;
 
     }
 
